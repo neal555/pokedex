@@ -9,7 +9,7 @@ import MovesScreen from '../screens/MovesScreen';
 
 export type RootStackParamList = {
   Home: undefined;
-  Details: Pokemon;
+  Details: {pokemon: Pokemon; saved?: boolean};
   Evolutions: {sprites: Sprites | null};
   Abilities: {abilities: Ability[]};
   Moves: {moves: Move[]};

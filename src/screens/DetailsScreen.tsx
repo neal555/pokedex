@@ -23,7 +23,8 @@ type DetailScreenProps = NativeStackScreenProps<
 >;
 
 const DetailsScreen = ({route, navigation}: DetailScreenProps) => {
-  const pokemon = route.params;
+  const pokemon = route.params.pokemon;
+  const saved = route.params.saved;
 
   const [isSaved, setIsSaved] = React.useState(false);
 
@@ -39,8 +40,12 @@ const DetailsScreen = ({route, navigation}: DetailScreenProps) => {
       }
       setIsSaved(await checkIfPokemonIsSaved(pokemon));
     };
-    checkIfSaved();
-  }, [pokemon]);
+    const unsubscribe = navigation.addListener('focus', () => {
+      checkIfSaved();
+    });
+
+    return unsubscribe;
+  }, [navigation, pokemon]);
 
   const handleSave = useCallback(async () => {
     if (!pokemon) {
@@ -59,8 +64,9 @@ const DetailsScreen = ({route, navigation}: DetailScreenProps) => {
     const {success} = await removePokemon(pokemon);
     if (success) {
       setIsSaved(false);
+      saved && navigation.goBack();
     }
-  }, [pokemon]);
+  }, [pokemon, saved, navigation]);
 
   if (isLoading) {
     return <Loading />;

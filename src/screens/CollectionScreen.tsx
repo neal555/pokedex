@@ -55,7 +55,9 @@ const CollectionScreen = ({navigation}: CollectionScreenProps) => {
       keyExtractor={item => item.url}
       renderItem={({item}) => (
         <Card
-          onPress={() => navigation.navigate('Details', item)}
+          onPress={() =>
+            navigation.navigate('Details', {pokemon: item, saved: true})
+          }
           item={item}
         />
       )}
