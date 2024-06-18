@@ -3,7 +3,7 @@ import {render} from '@testing-library/react-native';
 import AbilitiesScreen from './AbilitiesScreen';
 import {mokedPokemon} from '../../test/mockPokemon';
 
-describe('HomeScreen', () => {
+describe('AbilitiesScreen', () => {
   it('should render abilities', () => {
     const {getByText} = render(
       <AbilitiesScreen

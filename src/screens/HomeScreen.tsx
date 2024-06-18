@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, FlatList} from 'react-native';
+import {FlatList} from 'react-native';
 import {useInfiniteQuery} from '@tanstack/react-query';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../navigation/MainStackNavigator';
@@ -51,11 +51,7 @@ const HomeScreen = ({navigation}: HomeScreenProps) => {
       )}
       onEndReached={() => hasNextPage && fetchNextPage()}
       onEndReachedThreshold={0.5}
-      ListFooterComponent={
-        isFetchingNextPage ? (
-          <ActivityIndicator size={'large'} color={'#aee'} />
-        ) : null
-      }
+      ListFooterComponent={isFetchingNextPage ? <Loading /> : null}
     />
   );
 };
