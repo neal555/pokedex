@@ -13,8 +13,7 @@ type CollectionScreenProps = NativeStackScreenProps<
   'Collection'
 >;
 
-const CollectionScreen = ({route, navigation}: CollectionScreenProps) => {
-  const pokemon = route.params;
+const CollectionScreen = ({navigation}: CollectionScreenProps) => {
   const [data, setData] = useState<Pokemon[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -31,10 +30,8 @@ const CollectionScreen = ({route, navigation}: CollectionScreenProps) => {
   };
 
   useEffect(() => {
-    if (pokemon) {
-      handleGetPokemons();
-    }
-  }, [pokemon]);
+    handleGetPokemons();
+  }, []);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {

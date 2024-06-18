@@ -9,7 +9,7 @@ interface CardProps {
 
 const Card = ({item, onPress}: CardProps) => {
   return (
-    <Pressable style={styles.item} onPress={onPress}>
+    <Pressable style={styles.item} onPress={onPress} testID="card-component">
       <Text style={styles.text}>{String(item?.name ?? '').toUpperCase()}</Text>
     </Pressable>
   );
